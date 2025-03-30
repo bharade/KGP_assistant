@@ -69,8 +69,7 @@
 #     st.markdown(f'<div class="chat-bubble {role_class}">{content}</div>', unsafe_allow_html=True)
 # st.markdown('</div>', unsafe_allow_html=True)
 
-# GROQ_API_KEY = "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" # Replace with your actual Groq API key
-# # deepseek_api_key="sk-1a9c2c7ef24b4b4d8a8fe7a382e2cb7d"
+# GROQ_API_KEY = "your_groq_api_key" # Replace with your actual Groq API key
 # # Groq client
 # client = groq.Groq(api_key=GROQ_API_KEY)
 
@@ -293,8 +292,7 @@ else:
     if "file_upload" in st.session_state:
         st.toast("⚠️ Document-only mode deactivated!", icon="⚠️")
 
-GROQ_API_KEY = "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" # Replace with your actual Groq API key
-# deepseek_api_key="sk-1a9c2c7ef24b4b4d8a8fe7a382e2cb7d"
+GROQ_API_KEY = "your_groq_api_key" # Replace with your actual Groq API key
 # Groq client
 client = groq.Groq(api_key=GROQ_API_KEY)
 
