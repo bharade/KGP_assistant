@@ -8,6 +8,9 @@ from utils import initialize_vectorstore, format_docs, rag_prompt
 from tavily_integration import web_response
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Set page configuration
 st.set_page_config(
     page_title="ABC - Chatbot",
@@ -117,7 +120,7 @@ else:
     if "file_upload" in st.session_state:
         st.toast("⚠️ Document-only mode deactivated!", icon="⚠️")
 
-GROQ_API_KEY = "your_groq_api_key" # Replace with your actual Groq API key
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")# Replace with your actual Groq API key
 # Groq client
 client = groq.Groq(api_key=GROQ_API_KEY)
 
