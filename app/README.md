@@ -1,38 +1,29 @@
 # Project Title
-# AI-Powered Chatbot for KGPians: Query LLM App
+Chatbot for KGPians 🎓
 
-## Short Description/Tagline
-An AI-powered chatbot for KGPians 🎓, built using Streamlit, Open-Source LLM, Groq, and Tavily 🔍.
+## Short Description
+An AI-powered chatbot for KGPians using Streamlit, Open-Source LLM, Groq, and Tavily.
 
 ### ✨ Key Features
-* Custom CSS for styling
-* Upload file section in sidebar
-* Toggle button for Document-only Mode 📄
-* Cache vector store initialization ⏳
+• Supports natural language processing
+• Utilizes vector store for document processing
+• Implements shake animation for document-only mode
+• Provides TF-IDF filtering for web search results
 
 ### ⚙️ Installation
-Not applicable. This project is a Streamlit app.
+No installation required. Directly run the app using Streamlit.
 
 ### 🚀 Usage
-To interact with the chatbot, follow these steps:
-```markdown
-1. Upload a file (txt, pdf, or docx) or enter your query
-2. Toggle the Document-only Mode button to activate the mode (if applicable)
-3. The chatbot will respond with a JSON object containing 'thought' and 'answer' fields
-```
+1. Upload a file to initiate document-only mode.
+2. Type a prompt to initiate conversation.
+3. Chatbot will respond with a JSON object containing 'thought' and 'answer' fields.
+4. Use the toggle button in the sidebar to switch between document-only mode and standard mode.
+
 ### 🤝 Contributing
-Contributions are welcome!
+Placeholder for contributing instructions.
 
 ### 📄 License
-This project is licensed under [Your License].
+Placeholder for license information.
 
-### Links
-* [Project Repository](https://github.com/your-username/project-name)
-* [Project Wiki](https://wiki.your-website.com/project-name)
-
-### Credits
-* Your Name
-* Streamlit
-* Open-Source LLM
-* Groq
-* Tavily
+### Notes
+This README file is automatically generated based on the project code context provided.

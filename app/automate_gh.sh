@@ -153,7 +153,7 @@ echo -e '\n\nRemoving during execution generated files'
 #rm script.py
 rm context.txt
 rm generated.md
-
+rm script.py
 git add .
 git commit -m "First commit"
 
