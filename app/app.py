@@ -117,7 +117,7 @@ else:
     if "file_upload" in st.session_state:
         st.toast("⚠️ Document-only mode deactivated!", icon="⚠️")
 
-GROQ_API_KEY = "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" # Replace with your actual Groq API key
+GROQ_API_KEY = "your_groq_api_key" # Replace with your actual Groq API key
 # Groq client
 client = groq.Groq(api_key=GROQ_API_KEY)
 
