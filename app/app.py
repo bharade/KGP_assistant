@@ -18,6 +18,14 @@ st.set_page_config(
     layout="wide"
 )
 
+suggested_questions = [
+    "How can I register for a course?",
+    "What are the hostel facilities like?",
+    "Where can I find the academic calendar?",
+    "How do I apply for a minor degree?",
+    "What are the best places to eat on campus?",
+    "How does the placement process work?"
+]
 # Custom CSS for styling
 st.markdown("""
     <style>
@@ -59,17 +67,53 @@ st.markdown("""
 st.sidebar.title("🤖 Query LLM App")
 st.sidebar.markdown('<h2 style="color: #54c0ff;">About</h2>', unsafe_allow_html=True)
 st.sidebar.write("An AI-powered chatbot for KGPians 🎓")
+
+col1, col2 = st.sidebar.columns(2)
+with col1:
+    if st.button("How to Use", key="how_to_use_btn"):
+        st.session_state.page = 'how_to_use'
+with col2:
+    if st.button("About Us", key="about_us_btn"):
+        st.session_state.page = 'about_us'
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+if st.session_state.page == "how_to_use":
+    st.title("How to Use")
+    st.write("This section will guide users on how to interact with the chatbot, what kind of queries it supports, and examples of use cases.")
+    
+    if st.button("🔙 Back to Home"):
+        st.session_state.page = "home"
+        st.rerun()
+    
+    st.stop()
+
+if st.session_state.page == "about_us":
+    st.title("About Us")
+    st.write("This page will include information about the creators, the purpose of the chatbot, and the inspiration behind it.")
+    
+    if st.button("🔙 Back to Home"):
+        st.session_state.page = "home"
+        st.rerun()
+    
+    st.stop()
+
+# Upload file section in sidebar
+st.sidebar.markdown('<h2 style="color: #54c0ff;">Upload a File</h2>', unsafe_allow_html=True)
+uploaded_file = st.sidebar.file_uploader("", type=["txt", "pdf", "docx"])
+
+
+# Toggle button in sidebar
+toggle = st.sidebar.toggle("Document-only Mode")
+
+st.sidebar.markdown("---")
 st.sidebar.markdown("#### Technologies:")
 st.sidebar.write("- Streamlit 🌐")
 st.sidebar.write("- Open-Source LLM 🧠")
 st.sidebar.write("- Groq ⚙️")
 st.sidebar.write("- Tavily 🔍")
 
-# Upload file section in sidebar
-uploaded_file = st.sidebar.file_uploader("Upload a file", type=["txt", "pdf", "docx"])
 
-# Toggle button in sidebar
-toggle = st.sidebar.toggle("Document-only Mode")
 
 # Cache vector store initialization
 # @st.cache_resource
@@ -86,10 +130,14 @@ vectorstore, retriever = get_vectorstore()
 
 # Main app title
 st.markdown('<h2 class="main-title">Hi There! 👋 How Can I Help You Today? 🚀</h2>', unsafe_allow_html=True)
-
-# Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+cols = st.columns(len(suggested_questions))
+for i, question in enumerate(suggested_questions):
+    if cols[i].button(question, key=f"question_{i}"):
+        st.session_state["selected_question"] = question
+
 
 
 for message in st.session_state.messages:
@@ -105,6 +153,16 @@ for message in st.session_state.messages:
 </div>
         """
     st.markdown(div, unsafe_allow_html=True)
+
+    # # Display Suggested Questions Below Last Response
+    # if st.session_state.messages:
+    #     st.markdown("### Suggested Questions 📌")
+    #     cols = st.columns(min(len(suggested_questions), 3))  # Max 3 per row
+    #     for i, question in enumerate(suggested_questions):
+    #         if cols[i % 3].button(question, key=f"question_{i}_{int(time.time())}"):
+    #             st.session_state["selected_question"] = question
+    #             st.rerun()  
+                
 
 # Handle toggle behavior
 if toggle:
@@ -266,6 +324,7 @@ async def process_input(prompt):
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
+            
 # Handle user input asynchronously
-if prompt := st.chat_input("Ask me anything about KGP! 🤔"):
-    asyncio.run(process_input(prompt))
+if prompt := st.chat_input("Ask me anything about KGP! 🤔") or "selected_question" in st.session_state:
+    asyncio.run(process_input(st.session_state.pop("selected_question", prompt)))
