@@ -18,12 +18,16 @@ st.set_page_config(
     layout="wide"
 )
 
+if "page" not in st.session_state:
+    st.session_state.page = None
+
+
 suggested_questions = [
-    "How can I register for a course?",
-    "What are the hostel facilities like?",
+    "What micro-specializations can I do at IIT KGP?",
+    "What are the hostel facilities like at IIT KGP?",
     "Where can I find the academic calendar?",
     "How do I apply for a minor degree?",
-    "What are the best places to eat on campus?",
+    "What is the procedure to drop an additional at IITKGP?",
     "How does the placement process work?"
 ]
 # Custom CSS for styling
@@ -72,31 +76,21 @@ col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("How to Use", key="how_to_use_btn"):
         st.session_state.page = 'how_to_use'
+
 with col2:
     if st.button("About Us", key="about_us_btn"):
         st.session_state.page = 'about_us'
-if "page" not in st.session_state:
-    st.session_state.page = "home"
 
 if st.session_state.page == "how_to_use":
-    st.title("How to Use")
-    st.write("This section will guide users on how to interact with the chatbot, what kind of queries it supports, and examples of use cases.")
-    
-    if st.button("🔙 Back to Home"):
-        st.session_state.page = "home"
-        st.rerun()
-    
+    from how_to_use import how_to_use
+    how_to_use()
     st.stop()
 
 if st.session_state.page == "about_us":
-    st.title("About Us")
-    st.write("This page will include information about the creators, the purpose of the chatbot, and the inspiration behind it.")
-    
-    if st.button("🔙 Back to Home"):
-        st.session_state.page = "home"
-        st.rerun()
-    
+    from about_us import about_us
+    about_us()
     st.stop()
+
 
 # Upload file section in sidebar
 st.sidebar.markdown('<h2 style="color: #54c0ff;">Upload a File</h2>', unsafe_allow_html=True)
