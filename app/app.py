@@ -40,6 +40,10 @@ st.markdown("""
         75% { transform: translateX(-5px); }
         100% { transform: translateX(0); }
     }
+    @keyframes textShine {
+        0% { background-position: 0% 50%;}
+        100% { background-position: 100% 50%;}
+    }
     .shake {
         animation: shake 0.3s ease-in-out 2;
         background-color: #ffcccc !important;
@@ -47,22 +51,61 @@ st.markdown("""
         border-radius: 5px;
         padding: 5px;
     }
-    body { background-color: #18191A; color: white; }
+    body { 
+        background-color: #18191A; 
+        color: white; 
+    }
     .stApp { background-color: #18191A; }
     .chat-row { display: flex; margin: 5px; width: 100%; }
     .row-reverse {flex-direction: row-reverse;}
     .chat-bubble {
-    padding: 12px 18px;
-    border-radius: 20px;
-    max-width: 70%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    word-wrap: break-word;
-    margin-bottom: 5px; /* Added margin for padding between messages */
+        padding: 12px 18px;
+        border-radius: 20px;
+        max-width: 70%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        word-wrap: break-word;
+        margin-bottom: 5px; /* Added margin for padding between messages */
     }   
-    .user { background-color: #0093E9; background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); color: white; font-size: 1.25em}
-    .assistant { background-color: transparent; color: white; font-size: 1.25em}
-    .thinking { background-color: #3A3B3C; color: white; padding: 10px; border-radius: 10px; font-style: italic; max-width: 70%; font-size: 1.25em}
-    .response { background-color: transparent; color: white; padding: 10px; border-radius: 10px; margin-top: 5px; max-width: 70%; font-size: 1.25em}
+    .user { 
+        background-color: #0093E9; 
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); 
+        color: white; font-size: 1.25em
+    }
+    .assistant { 
+        background-color: transparent; 
+        color: white; font-size: 1.25em
+    }
+    .thinking { 
+        background-color: #3A3B3C; color: white; 
+        padding: 10px; border-radius: 10px; 
+        font-style: italic; max-width: 70%; 
+        font-size: 1.25em
+    }
+    .response { 
+        background-color: transparent; 
+        color: white; padding: 10px; 
+        border-radius: 10px; 
+        margin-top: 5px; 
+        max-width: 70%; 
+        font-size: 1.25em
+    }
+    .temp { 
+        background: linear-gradient(90deg, rgba(138,137,137,1) 0%, rgba(255,255,255,1) 86%);
+        background-clip: text;
+        background-size: 500% auto;
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent; 
+        animation: textShine 1s ease-in-out infinite alternate;
+        background-color: #3A3B3C; 
+        color: white; padding: 10px; 
+        border-radius: 10px; 
+        font-style: italic; 
+        max-width: 70%; 
+        font-size: 1.25em; 
+        opacity: 1;
+        will-change: background-position;
+    }
     input[type="text"] { background-color: #242526; color: white; border-radius: 10px; padding: 10px; border: none; width: 100%; font-size: 1.25em}
     </style>
 """, unsafe_allow_html=True)
@@ -146,17 +189,7 @@ for message in st.session_state.messages:
     </div>
 </div>
         """
-    st.markdown(div, unsafe_allow_html=True)
-
-    # # Display Suggested Questions Below Last Response
-    # if st.session_state.messages:
-    #     st.markdown("### Suggested Questions 📌")
-    #     cols = st.columns(min(len(suggested_questions), 3))  # Max 3 per row
-    #     for i, question in enumerate(suggested_questions):
-    #         if cols[i % 3].button(question, key=f"question_{i}_{int(time.time())}"):
-    #             st.session_state["selected_question"] = question
-    #             st.rerun()  
-                
+    st.markdown(div, unsafe_allow_html=True)           
 
 # Handle toggle behavior
 if toggle:
@@ -187,6 +220,11 @@ async def process_input(prompt):
 </div>
         """
     st.markdown(div, unsafe_allow_html=True)
+
+    #Loading Screen
+    thinking_container = st.empty()
+    thinking_container.markdown('<div class="temp"> Processing your query ....</div>', unsafe_allow_html=True)
+
     # st.markdown(f'<div class="chat-bubble user">{prompt}</div>', unsafe_allow_html=True)
 
     # Initialize variables for document processing
@@ -204,6 +242,7 @@ async def process_input(prompt):
         
         try:
             # Create a separate vector store for the uploaded document
+            thinking_container.markdown('<div class="temp"> Finding answers for the query in the document....</div>', unsafe_allow_html=True)
             document_vectorstore, document_retriever = initialize_vectorstore(files=[temp_file_path])
         except Exception as e:
             st.error(f"Error processing document: {str(e)}")
@@ -289,7 +328,6 @@ async def process_input(prompt):
         response_text = response_content  # Fallback to raw response, if json fails
 
     # Initialize containers for dynamic updates
-    thinking_container = st.empty()
     response_container = st.empty()
 
     # Function to stream thinking dynamically
