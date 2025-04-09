@@ -106,8 +106,28 @@ st.markdown("""
         opacity: 1;
         will-change: background-position;
     }
+    div[data-testid="stBottomBlockContainer"] {
+        background-color: #18191A !important;
+    }
     input[type="text"] { background-color: #242526; color: white; border-radius: 10px; padding: 10px; border: none; width: 100%; font-size: 1.25em}
-    </style>
+    
+    div[data-testid="stChatInput"] textarea {
+        background-color: #242526;
+        color: white;
+        border-radius: 16px;
+        padding: 15px;
+        font-size: 1.25em;
+        box-shadow: 0 0 8px rgba(84, 192, 255, 0.5);
+    }
+    div[data-testid="stChatInput"] button {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        color: #ccc;
+    }
+        </style>
 """, unsafe_allow_html=True)
 
 # Sidebar
@@ -342,7 +362,7 @@ async def process_input(prompt):
     # Function to stream response dynamically
     async def stream_response():
         full_response = ""
-        words = response_text.split()
+        words = str(response_text).split()
         for word in words:
             full_response += word + " "
             response_container.markdown(f'<div class="response">{full_response}</div>', unsafe_allow_html=True)
