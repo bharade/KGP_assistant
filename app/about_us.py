@@ -83,8 +83,8 @@ def about_us():
             <div class="name">Aditya Bharade</div>
             <div class="role">AI Engineer • ML Research • SHM Expert</div>
             <div class="links">
-                <a href="https://linkedin.com/in/adityabharade" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/adityabharade" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/aditya-bharade-116b55219/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/bharade" target="_blank">GitHub</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -97,7 +97,7 @@ def about_us():
             <div class="role">NLP Specialist • Vision & Language • Backend Dev</div>
             <div class="links">
                 <a href="https://linkedin.com/in/ravikeshkumar" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/ravikeshkumar" target="_blank">GitHub</a>
+                <a href="https://github.com/ragitu5552" target="_blank">GitHub</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -110,7 +110,7 @@ def about_us():
             <div class="role">Cloud Architect • RAG Pipelines • Infra Wizard</div>
             <div class="links">
                 <a href="https://linkedin.com/in/surendrakiran" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/surendrakiran" target="_blank">GitHub</a>
+                <a href="https://github.com/tazerr" target="_blank">GitHub</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
