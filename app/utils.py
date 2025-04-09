@@ -39,7 +39,7 @@ def initialize_vectorstore(files=None):
         client = chromadb.PersistentClient(path="vectorized_db")
         
         # Load the collection
-        collection = client.get_collection(name="iitkgp_data", embedding_function=sentence_transformer_ef)
+        # collection = client.get_collection(name="iitkgp_data", embedding_function=sentence_transformer_ef)
         
         # Create LangChain Chroma vectorstore
         vectorstore = LangChainChroma(client=client, collection_name="iitkgp_data", embedding_function=embeddings)
