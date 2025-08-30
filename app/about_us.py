@@ -81,7 +81,7 @@ def about_us():
         <div class="profile-card">
             <img src="https://raw.githubusercontent.com/bharade/kgp-chatbot-assets/main/aditya.jpeg" class="profile-img" />
             <div class="name">Aditya Bharade</div>
-            <div class="role">AI Engineer • SHM • RAG Wizard</div>
+            <div class="role">AI Engineer • SHM • RAG </div>
             <div class="links">
                 <a href="https://linkedin.com/in/adityabharade" target="_blank">LinkedIn</a> |
                 <a href="https://github.com/adityabharade" target="_blank">GitHub</a>
@@ -94,10 +94,10 @@ def about_us():
         <div class="profile-card">
             <img src="https://raw.githubusercontent.com/bharade/kgp-chatbot-assets/main/ravikesh.jpeg" class="profile-img" />
             <div class="name">Ravikesh Kumar</div>
-            <div class="role">NLP Specialist • Full Stack Dev</div>
+            <div class="role">NLP • Full Stack Dev</div>
             <div class="links">
                 <a href="https://linkedin.com/in/ravikeshkumar" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/ravikeshkumar" target="_blank">GitHub</a>
+                <a href="https://github.com/ragitu5552" target="_blank">GitHub</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -110,7 +110,7 @@ def about_us():
             <div class="role">Infra Architect • Cloud RAG</div>
             <div class="links">
                 <a href="https://linkedin.com/in/surendrakiran" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/surendrakiran" target="_blank">GitHub</a>
+                <a href="https://github.com/tazerr" target="_blank">GitHub</a>
             </div>
         </div>
         """, unsafe_allow_html=True)
