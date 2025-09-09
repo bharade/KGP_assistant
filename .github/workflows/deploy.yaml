@@ -10,7 +10,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    permissions:   # 👈 required for GHCR
+    permissions:  
       contents: read
       packages: write
 
