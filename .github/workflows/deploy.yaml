@@ -27,13 +27,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/academiaai
+          IMAGE_NAME=ghcr.io/bharade/kgp_assistant/academiaai
           docker build -t $IMAGE_NAME:latest .
 
       - name: Push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/academiaai
+          IMAGE_NAME=ghcr.io/bharade/kgp_assistant/academiaai
           docker push $IMAGE_NAME:latest
+
 
       - name: Run container with secrets (smoke test)
         run: |
