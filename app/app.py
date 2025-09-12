@@ -324,7 +324,7 @@ async def process_input(prompt):
 
     # Groq API call
     chat_completion = client.chat.completions.create(
-        model="llama3-70b-8192",  # Use a supported Groq model
+        model="llama-3.3-70b-versatile",  # Use a supported Groq model
         messages=[
             {
                 "role": "user",
