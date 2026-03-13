@@ -24,11 +24,24 @@ if "page" not in st.session_state:
 
 suggested_questions = [
     "What micro-specializations can I do at IIT KGP?",
-    "What are the hostel facilities like at IIT KGP?",
-    "Where can I find the academic calendar?",
+    "What is Azad Hall?",
+    # "Where can I find the academic calendar?",
     "How do I apply for a minor degree?",
-    "What is the procedure to drop an additional at IITKGP?",
-    "How does the placement process work?"
+    # "What are the hostel rules at IIT KGP?",
+    "How can I access the digital library resources?",
+    # "What are the research opportunities for undergraduates?",
+    # "How do I register for courses online?",
+    # "What extracurricular activities are available on campus?",
+    # "How can I get involved in student organizations?",
+    "What support services are available for mental health?",
+    # "What scholarships are available for undergraduate students?",
+    # "What is the procedure to drop an additional at IITKGP?",
+    "​what is the eligibility for department change?",
+    "How does the placement process work?",
+    # "What are the best places to eat around campus?",
+    # "How can I improve my coding skills?",
+    # "What are the library timings?",
+    "How to access the gym facilities?"
 ]
 # Custom CSS for styling
 st.markdown("""
@@ -285,11 +298,11 @@ async def process_input(prompt):
         # Retrieve relevant documents from general knowledge base
         docs = await asyncio.to_thread(retriever.invoke, prompt)
         docs_re = format_docs(docs)
-
+        web_search_results=""
         # Perform web search
-        web_search_results = await asyncio.to_thread(web_response, prompt)
-        docs_txt = docs_re + "\n\n" + web_search_results
-        
+        # web_search_results = await asyncio.to_thread(web_response, prompt)
+        # docs_txt = docs_re + "\n\n" + web_search_results
+        docs_txt=docs_re
         # Apply TF-IDF filtering
         vectorizer = TfidfVectorizer()
         vectorizer.fit_transform([prompt, docs_txt])

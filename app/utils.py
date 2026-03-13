@@ -81,7 +81,7 @@ def initialize_vectorstore(files=None):
         
         # Split documents into chunks
         from langchain.text_splitter import RecursiveCharacterTextSplitter
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=400)
         splits = text_splitter.split_documents(documents)
         
         # Create vectorstore from the loaded documents
@@ -116,7 +116,6 @@ Now, review the user question:
 {question}
 
 Provide an answer to this questions using only the above context. 
-
-Use three sentences maximum and keep the answer concise.
+if the answer is not contained within the context, mention that and provide information close to it "
 
 Answer:"""
